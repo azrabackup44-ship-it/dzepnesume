@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html lang="sr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>džepne šume | Urbana Infrastruktura Full of Life</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700;800&family=Montserrat:wght@800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <script src="https://unpkg.com/lucide@latest"></script>
+    
+    <style>
+        :root {
+            --primary: #1B4332;
+            --accent: #70E000;
+            --emerald: #10B981;
+            --soft-bg: #F8FAFC;
+            --white: #FFFFFF;
+            --glass: rgba(255, 255, 255, 0.85);
+            --glass-border: rgba(27, 67, 50, 0.12);
+        }
+
+        * { scroll-behavior: smooth; }
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--soft-bg);
+            color: var(--primary);
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3 { font-family: 'Montserrat', sans-serif; }
+
+        /* --- PREMIUM GLASSMORPHISM --- */
+        .glass {
+            background: var(--glass);
+            backdrop-filter: blur(25px);
+            -webkit-backdrop-filter: blur(25px);
+            border: 1px solid var(--glass-border);
+            box-shadow: 0 10px 40px rgba(27, 67, 50, 0.04);
+        }
+
+        .text-gradient {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--emerald) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        /* --- ANIMACIJE --- */
+        .reveal { opacity: 0; transform: translateY(40px); transition: all 1s cubic-bezier(0.165, 0.84, 0.44, 1); }
+        .reveal.active { opacity: 1; transform: translateY(0); }
+
+        .dot-pattern {
+            background-image: radial-gradient(#cbd5e1 1.5px, transparent 1.5px);
+            background-size: 40px 40px;
+        }
+
+        .hero-bg-container {
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 55%;
+            height: 100%;
+            clip-path: polygon(20% 0, 100% 0, 100% 100%, 0% 100%);
+            z-index: 0;
+        }
+
+        .package-card {
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            border: 1.5px solid #e2e8f0;
+            height: 100%;
+            background: var(--white);
+        }
+        .package-card:hover {
+            transform: translateY(-15px) scale(1.02);
+            border-color: var(--accent);
+            box-shadow: 0 40px 80px rgba(27, 67, 50, 0.12);
+        }
+
+        .nav-link { position: relative; color: var(--primary); font-weight: 700; }
+        .nav-link::after {
+            content: ''; position: absolute; width: 0; height: 2px; bottom: -4px; left: 0;
+            background-color: var(--accent); transition: width 0.3s ease;
+        }
+        .nav-link:hover::after { width: 100%; }
+
+        .method-step { position: relative; padding-left: 50px; }
+        .method-step::before {
+            content: ''; position: absolute; left: 15px; top: 0; bottom: 0;
+            width: 2px; background: rgba(27, 67, 50, 0.1);
+        }
+        .step-icon {
+            position: absolute; left: 0; top: 0; width: 32px; height: 32px;
+            background: var(--primary); border-radius: 50%; display: flex;
+            align-items: center; justify-content: center; color: var(--accent);
+            z-index: 1; border: 4px solid var(--white);
+        }
+
+        .input-premium {
+            background: rgba(27, 67, 50, 0.04);
+            border: 1.5px solid rgba(27, 67, 50, 0.1);
+            transition: all 0.3s ease;
+            color: var(--primary);
+            font-weight: 500;
+        }
+        .input-premium:focus {
+            background: white;
+            border-color: var(--accent);
+            outline: none;
+            box-shadow: 0 0 30px rgba(112, 224, 0, 0.1);
+        }
+
+        .floating {
+            animation: floating 6s ease-in-out infinite;
+        }
+        @keyframes floating {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-25px); }
+        }
+    </style>
+</head>
+<body class="selection:bg-[#70E000]/30">
+
+    <!-- NAVIGACIJA -->
+    <nav class="fixed w-full z-[100] px-6 py-8">
+        <div class="max-w-7xl mx-auto glass rounded-[32px] px-8 py-4 flex justify-between items-center border border-white/50 shadow-2xl">
+            <div class="flex items-center gap-4 group cursor-pointer">
+                <!-- LOGO IZ KNJIGE STANDARDA -->
+                <svg width="170" height="40" viewBox="0 0 450 100" fill="none">
+                    <path d="M10 15C10 6.7 16.7 0 25 0H75C83.3 0 90 6.7 90 15V45C90 69.8 69.8 90 45 90H25C16.7 90 10 83.3 10 75V15Z" fill="#70E000" fill-opacity="0.25"/>
+                    <path d="M40 30L52 55H28L40 30Z" fill="#1B4332"/>
+                    <path d="M55 45L65 65H45L55 45Z" fill="#1B4332" fill-opacity="0.5"/>
+                    <text x="110" y="65" font-family="Poppins" font-size="52" font-weight="800" fill="#1B4332" style="letter-spacing: -2px;">dž:app</text>
+                    <text x="280" y="65" font-family="Poppins" font-size="52" font-weight="200" fill="#1B4332">šume</text>
+                </svg>
+            </div>
+            
+            <div class="hidden lg:flex items-center gap-10 text-[11px] font-bold uppercase tracking-[0.3em]">
+                <a href="#vizija" class="nav-link hover:text-emerald-700 transition">Vizija</a>
+                <a href="#metoda" class="nav-link hover:text-emerald-700 transition">Miyawaki 2.0</a>
+                <a href="#paketi" class="nav-link hover:text-emerald-700 transition">Paketi</a>
+                <a href="#tim" class="nav-link hover:text-emerald-700 transition">Tim</a>
+                <a href="#kontakt" class="bg-primary text-accent px-8 py-3.5 rounded-2xl text-[10px] font-black uppercase tracking-widest hover:scale-105 transition-all shadow-xl shadow-primary/20">
+                    Mreža života
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- HERO SEKCIJA -->
+    <section class="relative min-h-screen bg-white overflow-hidden flex items-center">
+        <div class="absolute inset-0 dot-pattern opacity-40"></div>
+        
+        <div class="hero-bg-container hidden lg:block">
+            <img src="https://images.unsplash.com/photo-1441974231531-c6227db76b6e?auto=format&fit=crop&q=80&w=2000" 
+                 alt="Urbana šuma" class="w-full h-full object-cover">
+            <div class="absolute inset-0 bg-gradient-to-r from-white via-white/40 to-transparent"></div>
+        </div>
+        
+        <div class="max-w-7xl mx-auto px-8 w-full relative z-10">
+            <div class="lg:w-1/2">
+                <div class="reveal active">
+                    <div class="inline-flex items-center gap-3 px-5 py-2 rounded-full bg-primary/10 border border-primary/20 text-primary text-[10px] font-black uppercase tracking-[0.35em] mb-12">
+                        <span class="w-2.5 h-2.5 rounded-full bg-primary animate-pulse"></span>
+                        Full of Life Infrastructure
+                    </div>
+                    <h1 class="text-7xl md:text-[96px] font-black tracking-tighter leading-[0.82] mb-12 text-primary">
+                        Priroda kao <br><span class="text-gradient italic font-light tracking-normal">strateški kapital.</span>
+                    </h1>
+                    <p class="text-2xl text-primary font-medium max-w-xl mb-14 leading-relaxed opacity-90">
+                        Pretvaramo gradski beton u inteligentni ekosistem koji raste. Postanite deo <span class="font-bold italic text-3xl">mreže života</span> – urbane infrastrukture Full of Life.
+                    </p>
+                    <div class="flex gap-12 items-center">
+                        <div class="flex flex-col">
+                            <span class="text-5xl font-black text-primary tracking-tighter">0.89</span>
+                            <span class="text-[10px] font-black text-primary/60 uppercase tracking-widest mt-1">Biodiverzitet Index</span>
+                        </div>
+                        <div class="w-px h-16 bg-primary/20"></div>
+                        <div class="flex flex-col">
+                            <span class="text-5xl font-black text-emerald-600 tracking-tighter">95%</span>
+                            <span class="text-[10px] font-black text-primary/60 uppercase tracking-widest mt-1">Opstanak aseta</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SEKCIJA: MIYAWAKI 2.0 -->
+    <section id="metoda" class="py-48 bg-white relative overflow-hidden">
+        <div class="max-w-7xl mx-auto px-8 relative z-10">
+            <div class="text-center max-w-3xl mx-auto mb-32 reveal">
+                <div class="tag mb-6 bg-accent/20 px-4 py-1 rounded text-primary text-[11px] font-black uppercase tracking-widest">Biološki Hardware</div>
+                <h2 class="text-6xl font-black tracking-tighter uppercase text-primary mb-6 leading-none">Miyawaki + dž:app</h2>
+                <p class="text-xl text-primary font-medium opacity-80 italic">Uspostavljanje ekosistema decenijama brže od prirode.</p>
+            </div>
+
+            <div class="grid lg:grid-cols-2 gap-24 items-center">
+                <div class="relative reveal">
+                    <div class="aspect-square rounded-[64px] overflow-hidden border-[20px] border-slate-50 shadow-2xl relative group">
+                        <img src="https://images.unsplash.com/photo-1466692476868-aef1dfb1e735?auto=format&fit=crop&q=80&w=1200" alt="Miyawaki Šuma" class="w-full h-full object-cover transition duration-[1.5s] group-hover:scale-110">
+                        <div class="absolute inset-0 bg-primary/20 mix-blend-overlay"></div>
+                    </div>
+                    <div class="absolute -bottom-10 -right-10 glass p-10 rounded-[48px] border-primary/10 w-80 shadow-3xl">
+                        <h4 class="text-[11px] font-black text-primary uppercase tracking-widest mb-4 font-bold">Inženjering sistema:</h4>
+                        <div class="space-y-4">
+                            <div class="flex items-center gap-3"><div class="w-2.5 h-2.5 rounded-full bg-primary"></div><p class="text-[11px] font-bold uppercase text-primary">Biološka gustina</p></div>
+                            <div class="flex items-center gap-3"><div class="w-2.5 h-2.5 rounded-full bg-emerald-600"></div><p class="text-[11px] font-bold uppercase text-primary">Senzorski monitoring</p></div>
+                            <div class="flex items-center gap-3"><div class="w-2.5 h-2.5 rounded-full bg-accent animate-pulse"></div><p class="text-[11px] font-bold uppercase text-primary">Ugljenični otisak</p></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="flex flex-col justify-center reveal">
+                    <h3 class="text-4xl font-black text-primary uppercase mb-12 leading-tight">Digitalni blizanac<br><span class="text-emerald-700 italic">prirodnog kapitala</span></h3>
+                    <div class="space-y-12">
+                        <div class="method-step">
+                            <div class="step-icon shadow-lg"><i data-lucide="satellite" class="w-4 h-4"></i></div>
+                            <h4 class="font-bold text-xl text-primary mb-2 uppercase tracking-tight">IoT Arhitektura</h4>
+                            <p class="text-primary text-base leading-relaxed opacity-80">Senzorska mreža prati vitalnost ekosistema u realnom vremenu, osiguravajući dugovečnost vaše investicije.</p>
+                        </div>
+                        <div class="method-step">
+                            <div class="step-icon shadow-lg"><i data-lucide="file-text" class="w-4 h-4"></i></div>
+                            <h4 class="font-bold text-xl text-primary mb-2 uppercase tracking-tight">Automatski ESG Report</h4>
+                            <p class="text-primary text-base leading-relaxed opacity-80">Verifikovani podaci o CO2 sekvestraciji i biodiverzitetu, spremni za CSRD revizore jednim klikom.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SEKCIJA: PAKETI -->
+    <section id="paketi" class="py-48 bg-slate-100/50 relative overflow-hidden">
+        <div class="absolute inset-0 dot-pattern opacity-10"></div>
+        <div class="max-w-7xl mx-auto px-8 relative z-10">
+            <div class="text-center max-w-3xl mx-auto mb-24 reveal">
+                <h2 class="text-6xl font-black tracking-tighter uppercase text-primary mb-6 leading-none">Infrastrukturni Paketi</h2>
+                <p class="text-xl text-primary font-medium opacity-80">Skalabilna rješenja projektovana za mjerljivu budućnost.</p>
+            </div>
+
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-10">
+                <!-- Paket 1 -->
+                <div class="package-card p-10 rounded-[56px] flex flex-col reveal delay-100">
+                    <p class="text-[11px] font-black text-emerald-700 uppercase tracking-[0.4em] mb-4">Starter</p>
+                    <h3 class="text-3xl font-black text-primary uppercase leading-tight mb-8">Micro<br>Forest</h3>
+                    <div class="w-12 h-1.5 bg-accent mb-10"></div>
+                    <ul class="space-y-5 text-sm text-primary font-bold leading-relaxed mb-auto">
+                        <li class="flex items-start gap-2"><i class="fa-solid fa-check text-accent mt-1"></i> 100 m² površine</li>
+                        <li class="flex items-start gap-2"><i class="fa-solid fa-check text-accent mt-1"></i> 300+ sadnica</li>
+                        <li class="flex items-start gap-2"><i class="fa-solid fa-check text-accent mt-1"></i> IoT monitoring</li>
+                    </ul>
+                </div>
+
+                <!-- Paket 2 -->
+                <div class="package-card p-10 rounded-[56px] flex flex-col reveal delay-200">
+                    <p class="text-[11px] font-black text-emerald-700 uppercase tracking-[0.4em] mb-4">Popular</p>
+                    <h3 class="text-3xl font-black text-primary uppercase leading-tight mb-8">Urban<br>Hub</h3>
+                    <div class="w-12 h-1.5 bg-accent mb-10"></div>
+                    <ul class="space-y-5 text-sm text-primary font-bold leading-relaxed mb-auto">
+                        <li class="flex items-start gap-2"><i class="fa-solid fa-check text-accent mt-1"></i> 200 m² površine</li>
+                        <li class="flex items-start gap-2"><i class="fa-solid fa-check text-accent mt-1"></i> 600+ sadnica</li>
+                        <li class="flex items-start gap-2"><i class="fa-solid fa-check text-accent mt-1"></i> Prošireni monitoring</li>
+                    </ul>
+                </div>
+
+                <!-- Paket 3 -->
+                <div class="package-card p-10 rounded-[56px] flex flex-col reveal delay-300">
+                    <p class="text-[11px] font-black text-emerald-700 uppercase tracking-[0.4em] mb-4">Campus</p>
+                    <h3 class="text-3xl font-black text-primary uppercase leading-tight mb-8">Eco<br>Campus</h3>
+                    <div class="w-12 h-1.5 bg-accent mb-10"></div>
+                    <ul class="space-y-5 text-sm text-primary font-bold leading-relaxed mb-auto">
+                        <li class="flex items-start gap-2"><i class="fa-solid fa-check text-accent mt-1"></i> 500 m² površine</li>
+                        <li class="flex items-start gap-2"><i class="fa-solid fa-check text-accent mt-1"></i> 1.500+ sadnica</li>
+                        <li class="flex items-start gap-2"><i class="fa-solid fa-check text-accent mt-1"></i> Full Digital Twin</li>
+                    </ul>
+                </div>
+
+                <!-- Paket 4: ESG LANDMARK - FIXED COLORS -->
+                <div class="package-card p-10 rounded-[56px] flex flex-col reveal delay-400 border-[3px] border-accent shadow-3xl">
+                    <p class="text-[11px] font-black text-emerald-700 uppercase tracking-[0.4em] mb-4">Impact</p>
+                    <h3 class="text-3xl font-black text-primary uppercase leading-tight mb-8">ESG<br>Landmark</h3>
+                    <div class="w-12 h-1.5 bg-accent mb-10"></div>
+                    <ul class="space-y-5 text-sm text-primary font-bold leading-relaxed mb-10">
+                        <li class="flex items-start gap-2"><i class="fa-solid fa-check text-accent mt-1"></i> 1.000+ m² površine</li>
+                        <li class="flex items-start gap-2"><i class="fa-solid fa-check text-accent mt-1"></i> 3.000+ sadnica</li>
+                        <li class="flex items-start gap-2"><i class="fa-solid fa-check text-accent mt-1"></i> Custom Dashboard</li>
+                    </ul>
+                    <a href="#kontakt" class="mt-auto bg-primary text-accent w-full py-5 rounded-[28px] font-black uppercase text-[11px] tracking-widest hover:bg-emerald-950 transition-all text-center shadow-xl">
+                        Kontakt
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- TIM SEKCIJA -->
+    <section id="tim" class="py-48 bg-white overflow-hidden">
+        <div class="max-w-7xl mx-auto px-8">
+            <div class="text-center max-w-3xl mx-auto mb-32 reveal">
+                <h2 class="text-7xl font-black uppercase tracking-tighter text-primary leading-[0.9] mb-8">Tim koji menja <br><span class="text-emerald-600 italic">DNK gradova.</span></h2>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-16">
+                <!-- TIBOR -->
+                <div class="team-card reveal delay-100">
+                    <div class="aspect-[3/4] rounded-[64px] overflow-hidden mb-10 shadow-2xl relative group bg-slate-50 border-[20px] border-white">
+                        <img src="2000_6980fbac91352.webp" alt="Tibor Petrik" class="w-full h-full object-cover transition duration-1000 group-hover:scale-110">
+                        <div class="absolute inset-0 bg-primary/10 mix-blend-overlay"></div>
+                    </div>
+                    <h3 class="text-4xl font-black uppercase tracking-tight text-primary mb-2 leading-none">Tibor Petrik</h3>
+                    <p class="text-emerald-700 text-[11px] font-black uppercase tracking-[0.5em] mb-6 font-bold">CEO & Brand Visionary</p>
+                    <p class="text-primary text-sm font-medium leading-relaxed opacity-90">Novinar i producent koji vidi širu sliku, ali i strastveni zaljubljenik u prirodu koji razume najsuptilnije procese njenog večnog plesa sa društvom.</p>
+                </div>
+                <!-- AZRA -->
+                <div class="team-card reveal delay-200 lg:mt-20">
+                    <div class="aspect-[3/4] rounded-[64px] overflow-hidden mb-10 shadow-2xl relative group border-[20px] border-white bg-slate-50">
+                        <img src="2000_698ce82363ccf.webp" alt="Azra Dogan" class="w-full h-full object-cover transition duration-1000 group-hover:scale-110">
+                        <div class="absolute inset-0 bg-emerald-900/10 mix-blend-overlay"></div>
+                    </div>
+                    <h3 class="text-4xl font-black uppercase tracking-tight text-primary mb-2 leading-none">Azra Dogan</h3>
+                    <p class="text-emerald-700 text-[11px] font-black uppercase tracking-[0.5em] mb-6 font-bold">Prirodnjak i srce brenda</p>
+                    <p class="text-primary text-sm font-medium leading-relaxed opacity-90">S istančanim osjećajem za estetiku i dubokim razumijevanjem potreba klijenata, balansira između kreativnog haosa i preciznog pozicioniranja.</p>
+                </div>
+                <!-- DRAGANA -->
+                <div class="team-card reveal delay-300">
+                    <div class="aspect-[3/4] rounded-[64px] overflow-hidden mb-10 shadow-2xl relative group border-[20px] border-white bg-slate-50">
+                        <img src="2000_6980fbce25944.webp" alt="Dr. Dragana Čavlović" class="w-full h-full object-cover transition duration-1000 group-hover:scale-110">
+                        <div class="absolute inset-0 bg-primary/5 mix-blend-overlay"></div>
+                    </div>
+                    <h3 class="text-4xl font-black uppercase tracking-tight text-primary mb-2 leading-none">Dr. Dragana Čavlović</h3>
+                    <p class="text-emerald-700 text-[11px] font-black uppercase tracking-[0.5em] mb-6 font-bold">Arhitektica Šuma</p>
+                    <p class="text-primary text-sm font-medium leading-relaxed opacity-90">Unosi spoj naučne preciznosti i ekološke vizije. Dizajnira sisteme koji rastu brže, vraćajući bioraznolikost tamo gde nam je najpotrebnija.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- KONTAKT SEKCIJA (DEEP FOREST COLORS) -->
+    <section id="kontakt" class="py-48 bg-white relative overflow-hidden">
+        <div class="absolute inset-0 dot-pattern opacity-20"></div>
+        <div class="max-w-7xl mx-auto px-8 relative z-10">
+            <div class="text-center mb-24 reveal">
+                <h2 class="text-7xl font-black tracking-tighter uppercase leading-[0.8] mb-10 text-primary">Lansirajte Vašu <br><span class="text-emerald-600 italic font-light tracking-normal">šumu života.</span></h2>
+                <div class="w-32 h-2 bg-accent mx-auto rounded-full"></div>
+            </div>
+
+            <div class="glass bg-slate-50 p-16 rounded-[64px] shadow-3xl reveal border border-slate-100">
+                <form class="grid md:grid-cols-2 gap-10">
+                    <div class="flex flex-col gap-3">
+                        <label class="text-[12px] font-black uppercase tracking-widest text-primary ml-6 italic">Ime i Prezime</label>
+                        <input type="text" placeholder="Vaše ime" class="input-premium p-6 rounded-[32px] placeholder-primary/30 font-bold">
+                    </div>
+                    <div class="flex flex-col gap-3">
+                        <label class="text-[12px] font-black uppercase tracking-widest text-primary ml-6 italic">E-mail adresa</label>
+                        <input type="email" placeholder="vas@mail.rs" class="input-premium p-6 rounded-[32px] placeholder-primary/30 font-bold">
+                    </div>
+                    <div class="flex flex-col gap-3 md:col-span-2">
+                        <label class="text-[12px] font-black uppercase tracking-widest text-primary ml-6 italic">Poruka</label>
+                        <textarea rows="4" placeholder="Želim da saznam više o paketima..." class="input-premium p-6 rounded-[48px] placeholder-primary/30 font-bold"></textarea>
+                    </div>
+                    <div class="md:col-span-2 text-center mt-10">
+                        <button type="button" class="bg-primary text-accent px-20 py-6 rounded-[32px] font-black uppercase text-[14px] tracking-[0.3em] hover:bg-emerald-950 transition-all shadow-2xl">
+                            Pošaljite Upit
+                        </button>
+                    </div>
+                </form>
+            </div>
+
+            <!-- KONTAKT INFO (NOVI EMAIL-OVI U DEEP FOREST BOJI) -->
+            <div class="mt-24 grid md:grid-cols-2 gap-12 text-center reveal pt-20 border-t border-slate-100 text-primary">
+                <div>
+                    <h4 class="text-[12px] font-black uppercase tracking-widest text-emerald-700 mb-6 font-bold">Strateški Partneri</h4>
+                    <p class="text-2xl font-bold mb-3 hover:text-accent transition-colors cursor-pointer">tibor@creativespot.rs</p>
+                    <p class="text-2xl font-bold hover:text-accent transition-colors cursor-pointer">azra@creativespot.rs</p>
+                </div>
+                <div>
+                    <h4 class="text-[12px] font-black uppercase tracking-widest text-emerald-700 mb-6 font-bold">Centrala</h4>
+                    <p class="text-xl font-medium mb-3">+381 65 91 66 888</p>
+                    <p class="text-xl font-medium uppercase tracking-widest">Žabalj, Srbija</p>
+                </div>
+            </div>
+            <div class="mt-20 text-center opacity-30 text-[10px] uppercase tracking-[1em] text-primary">WWW.DZEPNESUME.COM</div>
+        </div>
+    </section>
+
+    <script>
+        lucide.createIcons();
+        const reveals = document.querySelectorAll('.reveal');
+        function handleScroll() {
+            reveals.forEach(reveal => {
+                const windowHeight = window.innerHeight;
+                const revealTop = reveal.getBoundingClientRect().top;
+                const revealPoint = 80;
+                if (revealTop < windowHeight - revealPoint) {
+                    reveal.classList.add('active');
+                }
+            });
+        }
+        window.addEventListener('scroll', handleScroll);
+        window.addEventListener('load', handleScroll);
+        handleScroll();
+    </script>
+</body>
+</html>
